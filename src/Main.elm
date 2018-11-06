@@ -5,7 +5,7 @@ import Browser exposing (Document)
 import Html exposing (Html, button, div, text)
 import Html.Events exposing (onClick)
 import Browser exposing (Document)
-import Html.Attributes exposing (style)
+import Html.Attributes exposing (class, style)
 
 
 main : Program () Model Msg
@@ -60,25 +60,21 @@ update msg model =
 
 view : Maybe Color -> Document Msg
 view mc =
-    { title = ""
-    , body =
-        [ case mc of
-            Just color ->
-                div
-                    [ style "backgroundColor" color
-                    , style "height" "100vh"
-                    , style "width" "100vw"
-                    , style "display" "flex"
-                    , style "justify-content" "center"
-                    , style "align-items" "center"
-                    , style "text-align" "center"
-                    , style "font-size" "40px"
-                    , style "color" "white"
-                    , onClick ChangeColor
+    case mc of
+        Just color ->
+            { title = "CSS Color : " ++ color
+            , body =
+                [ div
+                    [ class "root"
+                    , style "backgroundColor" color
                     ]
-                    [ div [] [ text color ] ]
+                    [ div [ class "text", onClick ChangeColor ] [ text color ] ]
+                ]
+            }
 
-            Nothing ->
-                div [] [ div [ onClick ChangeColor ] [ text "No" ] ]
-        ]
-    }
+        Nothing ->
+            { title = "CSS Color"
+            , body =
+                [ div [] [ div [ onClick ChangeColor ] [] ]
+                ]
+            }
