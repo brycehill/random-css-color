@@ -1,15 +1,20 @@
-module Main exposing (..)
+module Main exposing (Color, Msg(..), get, init, listGenerator, main, subscriptions, update, view)
 
-import Html exposing (Html, body, button, div, text)
-import Html.Attributes exposing (style)
-import Html.Events exposing (onClick)
 import Colors exposing (colors)
+import Browser exposing (Document)
+import Html exposing (Html, button, div, text)
+import Html.Events exposing (onClick)
+import Browser exposing (Document)
+import Html.Attributes exposing (style)
 import List exposing (drop, head)
 import Random
 
 
+-- main : Program () Color Msg
+
+
 main =
-    Html.program
+    Browser.element
         { init = init
         , view = view
         , update = update
@@ -43,9 +48,12 @@ type Msg
     = ChangeColor (Maybe String)
 
 
-init : ( Maybe Color, Cmd Msg )
-init =
-    ( head colors, Random.generate (ChangeColor) (listGenerator colors) )
+
+-- init : flags -> ( Maybe Color, Cmd Msg )
+
+
+init () =
+    ( head colors, Random.generate ChangeColor (listGenerator colors) )
 
 
 update : Msg -> Maybe Color -> ( Maybe Color, Cmd Msg )
@@ -68,15 +76,21 @@ subscriptions model =
 -- VIEW
 
 
-view : Maybe Color -> Html Msg
+view : Maybe Color -> Document Msg
 view mc =
-    case mc of
-        Just color ->
-            div
-                [ style [ ( "backgroundColor", color ), ( "height", "100%" ), ( "width", "100%" ) ]
-                , onClick (ChangeColor mc)
-                ]
-                [ div [] [ text color ] ]
+    { title = ""
+    , body =
+        [ case mc of
+            Just color ->
+                div
+                    [ style "backgroundColor" color
+                    , style "height" "100%"
+                    , style "width" "100%"
+                    , onClick (ChangeColor mc)
+                    ]
+                    [ div [] [ text color ] ]
 
-        Nothing ->
-            div [] [ div [ onClick (ChangeColor mc) ] [ text "No" ] ]
+            Nothing ->
+                div [] [ div [ onClick (ChangeColor mc) ] [ text "No" ] ]
+        ]
+    }

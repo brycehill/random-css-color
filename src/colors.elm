@@ -1,4 +1,11 @@
-module Colors exposing (..)
+module Colors exposing (Color, getRandomColor)
+
+import List exposing (drop, head)
+import Random
+
+
+type alias Color =
+    String
 
 
 colors =
@@ -150,3 +157,22 @@ colors =
     , "Yellow"
     , "YellowGreen"
     ]
+
+
+
+-- Helpers
+
+
+get : List a -> Int -> Maybe a
+get list i =
+    head (drop i list)
+
+
+listGenerator : List a -> Random.Generator (Maybe a)
+listGenerator list =
+    Random.map (get list) (Random.int 0 (List.length list))
+
+
+getRandomColor : (Maybe String -> msg) -> Cmd msg
+getRandomColor toMsg =
+    Random.generate toMsg (listGenerator colors)
