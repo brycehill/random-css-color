@@ -1,0 +1,88 @@
+body {
+  font-family: 'Source Sans Pro', 'Trebuchet MS', 'Lucida Grande', 'Bitstream Vera Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  margin: 0;
+  text-align: center;
+  color: #293c4b;
+  padding: 0;
+  cursor:pointer;
+}
+
+
+img {
+  margin: 20px 0;
+  max-width: 200px;
+}
+
+
+.root {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Open Sans", Helvetica, sans-serif;
+  /* transition: background-color 100ms ease-in-out; */
+}
+
+
+.text {
+  user-select:none;
+  /* transition: color 200ms ease-in-out; */
+  cursor: pointer;
+  font-size: 5em;
+  color: whitesmoke;
+  word-break:break-all;
+  letter-spacing: 5px;
+  font-weight: 100;
+}
+
+.text:hover {
+  animation-name:wiggle;
+  animation-name: wiggle;
+  animation-duration: 300ms;
+  animation-ease: ease-in-out;
+  /* animation-iteration-count: infinite; */
+  /* letter-spacing:12px; */
+}
+
+.text--dark {
+  color: darkmagenta;
+}
+
+@keyframes wiggle {
+  0% {
+    letter-spacing:5px;
+  }
+  70% {
+    letter-spacing:12px;
+  }
+  90% {
+    letter-spacing:3px;
+  }
+  100% {
+    letter-spacing:5px;
+  }
+
+
+}
+
+@media only screen and (min-width: 480px) {
+  body {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  body {
+    font-size: 22px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  body {
+    font-size: 24px;
+  }
+}
+

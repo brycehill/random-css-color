@@ -1,2 +1,5 @@
-elm make src/Main.elm --output=dist/main.js
 
+### Dev
+```sh
+elm-app start
+```
