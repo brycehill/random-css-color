@@ -6,6 +6,8 @@ import Colors exposing (Color, fromUrl, getRandomColor, isLightColor)
 import Html exposing (Html, button, div, span, text)
 import Html.Attributes exposing (class, style)
 import Html.Events exposing (onClick)
+import Regex
+import String
 import Url
 
 
@@ -107,7 +109,7 @@ view model =
                                 ""
                             )
                         ]
-                        [ text color ]
+                        [ text (splitOnUpper color) ]
                     ]
                 ]
             }
@@ -118,3 +120,19 @@ view model =
                 [ div [] [ div [ onClick ChangeColor ] [] ]
                 ]
             }
+
+
+upperCase : Regex.Regex
+upperCase =
+    Maybe.withDefault Regex.never <|
+        Regex.fromString "[A-Z]+"
+
+
+
+-- splitOnUpper
+-- Take a color like "RoyalBlue" and make it "Royal Blue"
+
+
+splitOnUpper : String -> String
+splitOnUpper =
+    Regex.replace upperCase (.match >> String.append " ")
