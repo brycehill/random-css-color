@@ -1,0 +1,34 @@
+{
+  "scripts": {
+    "build": "rm -rf build/ && elm-app build",
+    "dev": "elm-app start",
+    "deploy": "yarn build && now build/ --public --prod --name=random-css-color"
+  },
+  "name": "random-css-color",
+  "description": "```sh elm-app start ```",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "elm-format": "^0.8.1",
+    "elm": "^0.19.0-bugfix2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brycehill/random-css-color.git"
+  },
+  "keywords": [
+    "elm",
+    "css",
+    "color"
+  ],
+  "author": "brycehill",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brycehill/random-css-color/issues"
+  },
+  "homepage": "https://github.com/brycehill/random-css-color#readme"
+}
