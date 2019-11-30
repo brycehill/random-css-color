@@ -1,7 +1,7 @@
 
 ### Dev
 ```sh
-yarn dev
+yarn && yarn dev
 ```
 
 ### Build
